@@ -4,15 +4,21 @@
 
 public class Solution {
     public String reverseString(String s) {
-        String reverse="";
-        for (int i=0;i<s.length();i++) {
-            reverse=s.charAt(i)+reverse;
+        char[] chars = s.toCharArray();
+        for (int i = 0; i < chars.length/2; i++) {
+            char a=chars[chars.length-i-1];
+            chars[chars.length-i-1]=chars[i];
+            chars[i]=a;
         }
-        return reverse;
+//        String reverse="";
+//        for (int i=0;i<s.length();i++) {
+//            reverse=s.charAt(i)+reverse;
+//        }
+        return String.valueOf(chars);
     }
 
 
     public static void main(String[] args) {
-        System.out.println((new Solution()).reverseString("acsa111dd"));
+        System.out.println((new Solution()).reverseString("acs  adffsdd"));
     }
 }
