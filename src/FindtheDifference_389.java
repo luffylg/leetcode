@@ -9,20 +9,27 @@ import java.util.ArrayList;
  */
 public class FindtheDifference_389 {
     public char findTheDifference(String s, String t) {
-        ArrayList<Character> list = new ArrayList<>();
-        for (int i = 0; i < s.length(); i++) {
-            list.add(s.charAt(i));
+//        char[] sa = s.toCharArray();
+//        char[] ta = t.toCharArray();
+//        for (int i = 0; i <sa.length ; i++) {
+//
+//        }
+        int length = s.length();
+        char k=0;
+        for (int i = 0; i < length; i++) {
+            k ^= s.charAt(i) ^ t.charAt(i);
         }
+        return (char) (k^t.charAt(length));
 
-        for (int i = 0; i < t.length(); i++) {
-            if (list.contains(t.charAt(i))){
-                list.remove(new Character(t.charAt(i)));
-            }
-            else {
-                return t.charAt(i);
-            }
-        }
-        return list.get(0);
+//        for (int i = 0; i < t.length(); i++) {
+//            if (list.contains(t.charAt(i))){
+//                list.remove(new Character(t.charAt(i)));
+//            }
+//            else {
+//                return t.charAt(i);
+//            }
+//        }
+//        return list.get(0);
     }
 
     public static void main(String[] args) {
