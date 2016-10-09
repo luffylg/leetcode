@@ -7,14 +7,21 @@
  */
 public class AddDigits_258 {
     public int addDigits(int num) {
-        if (num/10==0){
-            return num;
+//        if (num/10==0){
+//            return num;
+//        }
+//        int result=num%10+addDigits(num/10);
+//        return addDigits(result);
+        while (num>=10){
+            int a=num%10;
+            int b=num/10;
+            num=a+b;
+
         }
-        int result=num%10+addDigits(num/10);
-        return addDigits(result);
+        return num;
     }
 
     public static void main(String[] args) {
-        System.out.println(new AddDigits_258().addDigits(9773));
+        System.out.println(new AddDigits_258().addDigits(1055));
     }
 }
