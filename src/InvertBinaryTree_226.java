@@ -19,7 +19,6 @@ public class InvertBinaryTree_226 {
         TreeNode tmp=root.left;
         root.left=root.right;
         root.right=tmp;
-        System.out.println(root.left+" "+root.right);
         return root;
     }
     //先序遍历
