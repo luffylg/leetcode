@@ -19,6 +19,8 @@ public class InvertBinaryTree_226 {
         TreeNode tmp=root.left;
         root.left=root.right;
         root.right=tmp;
+        invertTree(root.left);
+        invertTree(root.right);
         return root;
     }
     //先序遍历
