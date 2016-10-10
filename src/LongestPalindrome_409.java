@@ -1,4 +1,5 @@
 import java.security.Key;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -9,26 +10,16 @@ import java.util.Map;
 public class LongestPalindrome_409 {
     public int longestPalindrome(String s) {
         int sum=0;
-        int ji=0;
-        HashMap<Character,Integer> map=new HashMap<>();
+        ArrayList<Character> list = new ArrayList<>();
         for (int i = 0; i <s.length() ; i++) {
             char c = s.charAt(i);
-            if (map.containsKey(c)){
-                map.put(c,map.get(c)+1);
+            if (list.contains(c)){
+                list.remove((Character)c);
             }else {
-                map.put(c,1);
+                list.add(c);
             }
         }
-        for (Object o : map.entrySet()) {
-            Map.Entry entry = (Map.Entry) o;
-            Object val = entry.getValue();
-            int a=(int)val;
-            if (a%2==1){
-                ji++;
-            }
-            sum+=a;
-        }
-        return ji==0?sum:sum-ji+1;
+        return list.size()==0?s.length():s.length()-list.size()+1;
     }
 
     public static void main(String[] args) {
