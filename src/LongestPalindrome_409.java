@@ -24,14 +24,11 @@ public class LongestPalindrome_409 {
             Object val = entry.getValue();
             int a=(int)val;
             if (a%2==1){
-                if (a>ji){
-                    sum-=ji;
-                    ji=a;
-                    sum += ji;
-                }
-            }else sum+=a;
+                ji++;
+            }
+            sum+=a;
         }
-        return sum;
+        return ji==0?sum:sum-ji+1;
     }
 
     public static void main(String[] args) {
