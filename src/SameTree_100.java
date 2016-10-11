@@ -3,10 +3,19 @@
  */
 public class SameTree_100 {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        return p == null && q == null || p != null && q != null && isSameNode(p, q) && isSameTree(p.right, q.right) && isSameTree(p.left, q.left);
+        if (p == null && q == null) return true;
+        if (p != null && q != null) {
+            if (!isSameNode(p, q)) return false;
+            return  isSameTree(p.right, q.right) && isSameTree(p.left, q.left);
+        }
+        return false;
     }
     private boolean isSameNode(TreeNode p, TreeNode q) {
-        return p == null && q == null || p != null && q != null && p.val == q.val;
+        if (p == null && q == null) return true;
+        if (p != null && q != null) {
+            return p.val == q.val;
+        }
+        return false;
     }
 
     private class TreeNode {
