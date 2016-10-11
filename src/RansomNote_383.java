@@ -1,25 +1,20 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by hp on 2016/10/11.
  */
 public class RansomNote_383 {
     public boolean canConstruct(String ransomNote, String magazine) {
-        int length1 = ransomNote.length();
-        int length2 = magazine.length();
-        if (length1>length2){
-            return false;
+        int[] table=new int[26];
+        for (int i = 0; i <magazine.length() ; i++) {
+            table[magazine.charAt(i)-'a']++;
         }
-        ArrayList<Character> list = new ArrayList<>();
-        for (int i = 0; i <length1 ; i++) {
-            list.add(ransomNote.charAt(i));
+        for (int i = 0; i <ransomNote.length() ; i++) {
+            if (--table[ransomNote.charAt(i)-'a']<0) return false;
         }
-        for (int i = 0; i <length2 ; i++) {
-            if (list.contains(magazine.charAt(i))){
-                list.remove((Character) magazine.charAt(i));
-            }
-        }
-        return list.size()==0;
+        return true;
     }
 
     public static void main(String[] args) {
