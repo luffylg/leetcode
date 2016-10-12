@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,10 +8,14 @@ import java.util.Collections;
  */
 public class ValidAnagram_242 {
     public boolean isAnagram(String s, String t) {
-        int[] ab = new int[26];
-        for (int i = 0; i < s.length(); i++) ab[s.charAt(i)-'a']++;
-        for (int i = 0; i < t.length(); i++) ab[t.charAt(i)-'a']--;
-        for (int val:ab) if (val!=0) return false;
+        if (s.length()!=t.length()) return false;
+        char[] sc = s.toCharArray();
+        char[] tc = t.toCharArray();
+        Arrays.sort(sc);
+        Arrays.sort(tc);
+        for (int i = 0; i <s.length() ; i++) {
+            if (sc[i]!=tc[i]) return false;
+        }
         return true;
     }
 }
