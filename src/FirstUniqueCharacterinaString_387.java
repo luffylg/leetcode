@@ -6,23 +6,20 @@ import java.util.Map;
  */
 public class FirstUniqueCharacterinaString_387   {
     public int firstUniqChar(String s) {
-        LinkedHashMap<Character, Integer> map = new LinkedHashMap<>();
+        int[] ar = new int[26];
+        int val = s.length() + 1;
         for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (map.containsKey(c)) map.put(c,map.get(c)+1);
-            else map.put(c,1);
+            int c = s.charAt(i) - 'a';
+            if (ar[c] == 0) ar[c] = i + 1;
+            else ar[c] = val;
         }
-        for (Map.Entry et:map.entrySet()) {
-            char key = (char) et.getKey();
-            int value = (int) et.getValue();
-            if (value==1){
-                return s.indexOf(key);
-            }
+        for (int i : ar) {
+            if (i > 0 && i < val) val = i;
         }
-        return -1;
+        return val == s.length() + 1 ? -1 : val-1;
     }
 
     public static void main(String[] args) {
-        System.out.println(new FirstUniqueCharacterinaString_387().firstUniqChar("leetleet"));
+        System.out.println(new FirstUniqueCharacterinaString_387().firstUniqChar("leetleeta"));
     }
 }
