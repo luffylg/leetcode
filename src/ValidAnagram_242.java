@@ -7,17 +7,10 @@ import java.util.Collections;
  */
 public class ValidAnagram_242 {
     public boolean isAnagram(String s, String t) {
-        if (s.length()!=t.length()) return false;
-        char[] chars = s.toCharArray();
-        ArrayList<Character> list = new ArrayList<>();
-        for (Character i:chars) {
-            list.add(i);
-        }
-        for (int j=0;j<t.length();j++) {
-            char c = t.charAt(j);
-            if (list.contains(c)) list.remove((Character) c);
-            else return false;
-        }
+        int[] ab = new int[26];
+        for (int i = 0; i < s.length(); i++) ab[s.charAt(i)-'a']++;
+        for (int i = 0; i < t.length(); i++) ab[t.charAt(i)-'a']--;
+        for (int val:ab) if (val!=0) return false;
         return true;
     }
 }
