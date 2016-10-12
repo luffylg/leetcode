@@ -7,16 +7,13 @@ import java.util.Map;
 public class FirstUniqueCharacterinaString_387   {
     public int firstUniqChar(String s) {
         int[] ar = new int[26];
-        int val = s.length() + 1;
         for (int i = 0; i < s.length(); i++) {
-            int c = s.charAt(i) - 'a';
-            if (ar[c] == 0) ar[c] = i + 1;
-            else ar[c] = val;
+            ar[s.charAt(i) - 'a']++;
         }
-        for (int i : ar) {
-            if (i > 0 && i < val) val = i;
+        for (int i = 0; i < s.length(); i++) {
+            if (ar[s.charAt(i) - 'a']==1) return i;
         }
-        return val == s.length() + 1 ? -1 : val-1;
+        return -1;
     }
 
     public static void main(String[] args) {
