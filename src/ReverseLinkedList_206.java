@@ -3,15 +3,11 @@
  */
 public class ReverseLinkedList_206 {
     public ListNode reverseList(ListNode head) {
-        ListNode cur=head;
-        ListNode pre=null;
-        while (cur!=null){
-            ListNode tmp=cur.next;
-            cur.next=pre;
-            pre=cur;
-            cur=tmp;
-        }
-        return pre;
+        if (head==null||head.next==null) return head;
+        ListNode p=reverseList(head.next);
+        head.next.next=head;
+        head.next=null;
+        return p;
     }
     public class ListNode {
         int val;
