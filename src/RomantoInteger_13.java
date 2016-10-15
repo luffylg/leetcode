@@ -9,23 +9,12 @@ public class RomantoInteger_13 {
 			}
 		};
 		int level=1000;
-		int count=0;
         for (int i = 0; i < s.length(); i++) {
 			char c=s.charAt(i);
 			int currentl=map.get(c);
-			if (currentl==level) {
-				count++;
-				if (i==s.length()-1) sum+=level*count;
-			}else if (currentl<level) {
-				sum+=level*count;
-				count=1;
-				level=currentl;
-				if (i==s.length()-1) sum+=level;
-			}else {
-				sum+=(currentl-level*count);
-				count=0;
-				level=currentl;
-			}
+			if (currentl>level) sum+=(currentl-level*2);
+			else sum+=currentl;
+			level=currentl;
 		}
         return sum;
     }
