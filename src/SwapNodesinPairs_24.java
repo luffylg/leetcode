@@ -8,13 +8,10 @@ public class SwapNodesinPairs_24 {
         ListNode(int x) { val = x; }
     }
     public ListNode swapPairs(ListNode head) {
-        ListNode point=head;
-        while (point!=null&&point.next!=null){
-            int tmp=point.val;
-            point.val=point.next.val;
-            point.next.val=tmp;
-            point=point.next.next;
-        }
-        return head;
+        if (head==null||head.next==null) return head;
+        ListNode er=head.next;
+        head.next=swapPairs(er.next);
+        er.next=head;
+        return er;
     }
 }
