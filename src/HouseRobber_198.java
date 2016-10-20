@@ -8,12 +8,12 @@ public class HouseRobber_198 {
         int len=nums.length;
         if (len==0) return 0;
         if (len==1) return nums[0];
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(0);
-        list.add(nums[0]);
-        for (int i = 2; i <=len; i++) {
-            list.add(Math.max(list.get(i-2)+nums[i-1],list.get(i-1)));
+        int[] ints = new int[len];
+        ints[0]=0;
+        ints[1]=nums[0];
+        for (int i = 2; i <len; i++) {
+            ints[i]=Math.max(ints[i-2]+nums[i-1],ints[i-1]);
         }
-        return list.get(len);
+        return Math.max(ints[len-2]+nums[len-1],ints[len-1]);
     }
 }
