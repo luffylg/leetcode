@@ -3,20 +3,17 @@
  */
 public class PlusOne_66 {
     public int[] plusOne(int[] digits) {
-        long sum=0;
-        for (int i:digits) {
-            sum*=10;
-            sum+=i;
-
+        for (int i = digits.length-1; i >=0; i--) {
+            if (digits[i]==9){
+                digits[i]=0;
+            }else {
+                digits[i]+=1;
+                return digits;
+            }
         }
-
-        sum+=1;
-        int[] rs=new int[String.valueOf(sum).length()];
-        for (int i = rs.length-1; i >=0; i--) {
-            rs[i]= (int) (sum%10);
-            sum/=10;
-        }
-        return rs;
+        int[] ints = new int[digits.length + 1];
+        ints[0]=1;
+        return ints;
     }
 
     public static void main(String[] args) {
