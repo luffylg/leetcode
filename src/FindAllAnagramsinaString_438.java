@@ -6,33 +6,34 @@ import java.util.List;
  */
 public class FindAllAnagramsinaString_438 {
     public List<Integer> findAnagrams(String s, String p) {
-        int len=p.length();
-        if (len==1){
-            ArrayList<Integer> list = new ArrayList<>();
-            for (int i = 0; i <s.length() ; i++) {
-                char a=p.charAt(0);
-                if (s.charAt(i)==a) list.add(i);
-            }
-            return list;
-        }
         ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0; i <s.length()-len+1 ; i++) {
-            ArrayList<Character> list1 = new ArrayList<>();
-            for (int j = 0; j < len; j++) {
-                list1.add(s.charAt(i+j));
-            }
-            if (eq(list1,p)) list.add(i);
+        int lenp=p.length();
+        int lens=s.length();
+        if (lenp==0||lens==0||lens<lenp) return list;
+        int[] ints = new int[26];
+        for (char c:p.toCharArray()) {
+            ints[c-'a']++;
+        }
+        for (int i = 0; i < lenp-1; i++) {
+            ints[s.charAt(i)-'a']--;
+        }
+        for (int i = 0; i <lens-lenp+1 ; i++) {
+            ints[s.charAt(i+lenp-1)-'a']--;
+            if (iszero(ints)) list.add(i);
+            ints[s.charAt(i)-'a']++;
         }
         return list;
     }
 
-    private boolean eq(ArrayList<Character> list1, String p) {
-        for (int i = 0; i <p.length() ; i++) {
-            char c = p.charAt(i);
-            if (list1.contains(c)) list1.remove((Character)c);
-            else return false;
+    private boolean iszero(int[] ints) {
+        for (int item:ints) {
+            if (item!=0) return false;
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new FindAllAnagramsinaString_438().findAnagrams("cbaebabacd","abc"));
     }
 
 }
