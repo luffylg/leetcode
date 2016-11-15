@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
@@ -7,11 +8,10 @@ import java.util.LinkedList;
 public class ContainsDuplicateII_219 {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
         if(k<=0) return false;
-        LinkedList<Integer> list = new LinkedList<>();
-        for (int num : nums) {
-            if (list.size() > k) list.remove(0);
-            if (list.contains(num)) return true;
-            list.add(num);
+        HashSet<Integer> set = new HashSet<>();
+        for (int i=0;i<nums.length;i++) {
+            if (set.size()>k) set.remove(nums[i-k-1]);
+            if (!set.add(nums[i])) return true;
         }
         return false;
     }
