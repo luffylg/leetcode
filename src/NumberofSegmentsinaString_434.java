@@ -3,9 +3,14 @@
  */
 public class NumberofSegmentsinaString_434 {
     public int countSegments(String s) {
-        String s1=s.trim();
-        if (s1.length()==0) return 0;
-        String[] split = s1.split("\\s+");
-        return split.length;
+        boolean previousblank=true;
+        int count=0;
+        for (char ch:s.toCharArray()) {
+            if (ch!=' '){
+                if (previousblank) count+=1;
+                previousblank=false;
+            }else previousblank=true;
+        }
+        return count;
     }
 }
