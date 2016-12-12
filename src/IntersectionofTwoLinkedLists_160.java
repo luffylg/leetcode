@@ -18,7 +18,7 @@ public class IntersectionofTwoLinkedLists_160 {
         ListNode nodeb=headB;
         while (nodea!=nodeb){
             nodea=nodea==null?headB:nodea.next;
-            nodeb=nodeb==null?headA:nodea.next;
+            nodeb=nodeb==null?headA:nodeb.next;
         }
         return nodea;
     }
