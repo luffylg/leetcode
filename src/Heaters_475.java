@@ -8,12 +8,15 @@ public class Heaters_475 {
     // 2. find the longest distance
     public int findRadius(int[] houses, int[] heaters) {
         Arrays.sort(heaters);
+        Arrays.sort(houses);
+        int start=0;
         int max=0;
         for (int house:houses) {
             int distance=Integer.MAX_VALUE;
-            for (int heater:heaters) {
-                if (heater-house>distance) break;
-                distance=Math.min(Math.abs(heater-house),distance);
+            for (int i = start; i <heaters.length ; i++) {
+                if (heaters[i]-house>distance) break;
+                distance=Math.min(Math.abs(heaters[i]-house),distance);
+                start=i;
             }
             max=Math.max(distance,max);
         }
