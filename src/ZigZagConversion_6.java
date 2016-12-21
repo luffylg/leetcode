@@ -16,10 +16,9 @@ public class ZigZagConversion_6 {
                 sb[j].append(s.charAt(i));
             }
         }
-        String result="";
-        for (StringBuilder b:sb) {
-            result+=b.toString();
+        for (int j = 1; j <numRows ; j++) {
+            sb[0].append(sb[j]);
         }
-        return result;
+        return sb[0].toString();
     }
 }
